@@ -35,10 +35,9 @@ break;
 else if (Math.max(data[i][j][k], data2[i][j][k]) >
 data[i][j][k])
 break;
-else if (Math.pow(Math.abs(data[i][j][k]), 3) <
-Math.pow(Math.abs(data2[i][j][k]), 3)
-&& average(data[i][j]) < data2[i][j][k] && (i + 1)
-* (j + 1) > 0)
+else if ((i + 1) * (j + 1) > 0
+&& average(data[i][j]) < data2[i][j][k] 
+&& Math.pow(Math.abs(data[i][j][k]), 3) < Math.pow(Math.abs(data2[i][j][k]), 3))
 data2[i][j][k] *= 2;
 else
 continue;
