@@ -9,7 +9,7 @@ this.limit = limit;
 }
 // calculates average of sensor data
 private double average(double[] array) {
-int i = 0;
+    
 double val = 0;
 for (i = 0; i < array.length; i++) {
 val += array[i];
