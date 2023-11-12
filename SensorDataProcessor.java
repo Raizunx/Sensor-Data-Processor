@@ -21,10 +21,9 @@ public void calculate(double d) {
 int i, j, k = 0;
 double[][][] data2 = new
 double[data.length][data[0].length][data[0][0].length];
-BufferedWriter out;
+
 // Write racing stats data into a file
-try {
-out = new BufferedWriter(new FileWriter("RacingStatsData.txt"));
+try (BufferedWriter out = new BufferedWriter(new FileWriter("RacingStatsData.txt"))) {
 for (i = 0; i < data.length; i++) {
 for (j = 0; j < data[0].length; j++) {
 for (k = 0; k < data[0][0].length; k++) {
