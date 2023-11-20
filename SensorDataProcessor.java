@@ -18,18 +18,24 @@ public RacingStatsCalculator {
 
 
     // Calculate and write racing stats data into a file
-    public void calculate(double d) {
-        try (BufferedWriter out = new BufferedWriter(new FileWriter("RacingStatsData.txt"))) {
+    public void calculateRaceStatsData(double RaceStatsData) {
+        try (BufferedWriter out = new BufferedWriter(new FileWriter("RacingStatsData.txt"))) {   
             for (int i = 0; i < data.length; i++) {
                 for (int j = 0; j < data[0].length; j++) {
                     for (int k = 0; k < data[0][0].length; k++) {
-                        double calculatedValue = data[i][j][k] / d - Math.pow(limit[i][j], 2.0);
-                        if (average(data[i][j]) > 10 && average(data[i][j]) < 50) {
-                            break;
-                        } else if (Math.max(data[i][j][k], calculatedValue) > data[i][j][k]) {
-                            break;
-                        } else if (Math.pow(Math.abs(data[i][j][k]), 3) < Math.pow(Math.abs(calculatedValue), 3)
-                                && average(data[i][j]) < calculatedValue && (i + 1) * (j + 1) > 0) {
+
+                        double dataAvg=average(data[i][j]);
+                        double calculatedValue = data[i][j][k] / RaceStatsData - Math.pow(limit[i][j], 2.0);
+                        if (dataAvg > 10) {
+                            if(dataAvg<50){
+                                break;
+                                }
+                        } 
+                        if (Math.max(data[i][j][k], calculatedValue) > data[i][j][k]) {
+                            break;    
+                        } 
+                        if (Math.pow(Math.abs(data[i][j][k]), 3) < Math.pow(Math.abs(calculatedValue), 3)
+                                && dataAvg < calculatedValue && (i + 1) * (j + 1) > 0) {
                             data[i][j][k] *= 2;
                         } else {
                             continue;
@@ -59,6 +65,8 @@ public RacingStatsCalculator {
         for (double value : array) {
             sum += value;
         }
-        return sum / array.length;
+
+        double avg=sum / array.length;
+        return avg;
     }
 }
